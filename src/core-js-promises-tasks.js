@@ -33,8 +33,15 @@ function getPromise(number) {
  * Promise.resolve('success') => promise that will be fulfilled with 'success' value
  * Promise.reject('fail')     => promise that will be fulfilled with 'fail' value
  */
-function getPromiseResult(/* source */) {
-  throw new Error('Not implemented');
+async function getPromiseResult(source) {
+  let res;
+  try {
+    await source;
+    res = await Promise.resolve('success');
+  } catch (error) {
+    res = await Promise.resolve('fail');
+  }
+  return res;
 }
 
 /**
